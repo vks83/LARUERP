@@ -16,12 +16,21 @@ jobs:
     - name: Configurer MSBuild (Outil de compilation)
       uses: microsoft/setup-msbuild@v2
 
-    - name: Compiler le projet C#
+    - name: Configurer l'environnement de développement .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '6.0.x'
+
+    - name: Générer le fichier projet automatique
       run: |
-        csc /target:library /out:RolesPermanentsFusion.dll /reference:MelonLoader.dll /reference:LabFusion.dll /reference:BoneLib.dll /reference:UnityEngine.CoreModule.dll ModRoles.cs
+        echo ^<Project Sdk="Microsoft.NET.Sdk"^>^<PropertyGroup^>^<TargetFramework^>net472^</TargetFramework^>^</PropertyGroup^>^<ItemGroup^>^<Reference Include="MelonLoader" HintPath="MelonLoader.dll" /^>^<Reference Include="LabFusion" HintPath="LabFusion.dll" /^>^<Reference Include="BoneLib" HintPath="BoneLib.dll" /^>^<Reference Include="UnityEngine.CoreModule" HintPath="UnityEngine.CoreModule.dll" /^>^</ItemGroup^>^</Project^> > ModRoles.csproj
+      shell: cmd
+
+    - name: Compiler le projet avec MSBuild
+      run: msbuild ModRoles.csproj /p:Configuration=Release /p:OutputType=Library
 
     - name: Sauvegarder le fichier DLL généré
       uses: actions/upload-artifact@v4
       with:
         name: Mod-Roles-Bonelab
-        path: RolesPermanentsFusion.dll
+        path: bin/Release/net472/ModRoles.dll
