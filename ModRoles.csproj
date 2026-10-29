@@ -1,24 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
-    <OutputType>Library</OutputType>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
-
   <ItemGroup>
-    <Reference Include="MelonLoader">
-      <HintPath>..\**\MelonLoader.dll</HintPath>
-    </Reference>
-    <Reference Include="LabFusion">
-      <HintPath>..\**\LabFusion.dll</HintPath>
-    </Reference>
-    <Reference Include="BoneLib">
-      <HintPath>..\**\BoneLib.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule">
-      <HintPath>..\**\UnityEngine.CoreModule.dll</HintPath>
-    </Reference>
+    <Reference Include="MelonLoader" HintPath="MelonLoader.dll" />
+    <Reference Include="LabFusion" HintPath="LabFusion.dll" />
+    <Reference Include="BoneLib" HintPath="BoneLib.dll" />
+    <Reference Include="UnityEngine.CoreModule" HintPath="UnityEngine.CoreModule.dll" />
   </ItemGroup>
-
 </Project>
