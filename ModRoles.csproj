@@ -8,16 +8,16 @@
 
   <ItemGroup>
     <Reference Include="MelonLoader">
-      <HintPath>MelonLoader.dll</HintPath>
+      <HintPath>LARUERP\MelonLoader.dll</HintPath>
     </Reference>
     <Reference Include="LabFusion">
-      <HintPath>LabFusion.dll</HintPath>
+      <HintPath>LARUERP\LabFusion.dll</HintPath>
     </Reference>
     <Reference Include="BoneLib">
-      <HintPath>BoneLib.dll</HintPath>
+      <HintPath>LARUERP\BoneLib.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>LARUERP\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
   </ItemGroup>
 
