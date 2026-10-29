@@ -16,24 +16,14 @@ jobs:
     - name: Configurer MSBuild (Outil de compilation)
       uses: microsoft/setup-msbuild@v2
 
-    - name: Configurer l'environnement de développement .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: '6.0.x'
-
-    - name: Générer le fichier projet automatique
-      run: |
-        echo ^<Project Sdk="Microsoft.NET.Sdk"^>^<PropertyGroup^>^<TargetFramework^>net472^</TargetFramework^>^</PropertyGroup^>^<ItemGroup^>^<Reference Include="MelonLoader"^>^<HintPath^>$(MSBuildProjectDirectory)\MelonLoader.dll^</HintPath^>^</Reference^>^<Reference Include="LabFusion"^>^<HintPath^>$(MSBuildProjectDirectory)\LabFusion.dll^</HintPath^>^</Reference^>^<Reference Include="BoneLib"^>^<HintPath^>$(MSBuildProjectDirectory)\BoneLib.dll^</HintPath^>^</Reference^>^<Reference Include="UnityEngine.CoreModule"^>^<HintPath^>$(MSBuildProjectDirectory)\UnityEngine.CoreModule.dll^</HintPath^>^</Reference^>^</ItemGroup^>^</Project^> > ModRoles.csproj
-      shell: cmd
-
     - name: Restaurer les dépendances du projet
       run: dotnet restore ModRoles.csproj
 
     - name: Compiler le projet avec MSBuild
-      run: msbuild ModRoles.csproj /p:Configuration=Release /p:OutputType=Library
+      run: msbuild ModRoles.csproj /p:Configuration=Release
 
     - name: Sauvegarder le fichier DLL généré
       uses: actions/upload-artifact@v4
       with:
         name: Mod-Roles-Bonelab
-        path: bin/Release/net472/ModRoles.dll
+        path: bin/Release/ModRoles.dll
