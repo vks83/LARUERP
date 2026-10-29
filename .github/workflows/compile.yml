@@ -26,6 +26,9 @@ jobs:
         echo ^<Project Sdk="Microsoft.NET.Sdk"^>^<PropertyGroup^>^<TargetFramework^>net472^</TargetFramework^>^</PropertyGroup^>^<ItemGroup^>^<Reference Include="MelonLoader" HintPath="MelonLoader.dll" /^>^<Reference Include="LabFusion" HintPath="LabFusion.dll" /^>^<Reference Include="BoneLib" HintPath="BoneLib.dll" /^>^<Reference Include="UnityEngine.CoreModule" HintPath="UnityEngine.CoreModule.dll" /^>^</ItemGroup^>^</Project^> > ModRoles.csproj
       shell: cmd
 
+    - name: Restaurer les dépendances du projet
+      run: dotnet restore ModRoles.csproj
+
     - name: Compiler le projet avec MSBuild
       run: msbuild ModRoles.csproj /p:Configuration=Release /p:OutputType=Library
 
