@@ -13,16 +13,17 @@ jobs:
     - name: Récupérer le code
       uses: actions/checkout@v4
 
-    - name: Activer les outils de développement Visual Studio
+    - name: Configurer MSBuild (Outil de compilation)
       uses: microsoft/setup-msbuild@v2
 
-    - name: Compiler le Mod de force
-      run: |
-        csc /target:library /out:ModRoles.dll /reference:LARUERP\MelonLoader.dll /reference:LARUERP\LabFusion.dll /reference:LARUERP\BoneLib.dll /reference:LARUERP\UnityEngine.CoreModule.dll LARUERP\ModRoles.cs
-      shell: cmd
+    - name: Restaurer les dépendances du projet
+      run: dotnet restore ModRoles.csproj
+
+    - name: Compiler le projet avec MSBuild
+      run: msbuild ModRoles.csproj /p:Configuration=Release
 
     - name: Sauvegarder le fichier DLL généré
       uses: actions/upload-artifact@v4
       with:
         name: Mod-Roles-Bonelab
-        path: ModRoles.dll
+        path: bin/Release/ModRoles.dll
