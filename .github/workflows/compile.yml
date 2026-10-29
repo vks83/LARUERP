@@ -13,23 +13,16 @@ jobs:
     - name: Récupérer le code
       uses: actions/checkout@v4
 
-    - name: Configurer MSBuild (Outil de compilation)
-      uses: microsoft/setup-msbuild@v2
+    - name: Configurer l'environnement .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '6.0.x'
 
-    - name: Déplacer les fichiers pour la compilation
-      run: |
-        move ModRoles.cs LARUERP\ModRoles.cs
-        move ModRoles.csproj LARUERP\ModRoles.csproj
-      shell: cmd
+    - name: Compiler le projet automatiquement
+      run: dotnet build LARUERP/ModRoles.csproj --configuration Release
 
-    - name: Restaurer les dépendances du projet
-      run: dotnet restore LARUERP\ModRoles.csproj
-
-    - name: Compiler le projet avec MSBuild
-      run: msbuild LARUERP\ModRoles.csproj /p:Configuration=Release
-      
     - name: Sauvegarder le fichier DLL généré
       uses: actions/upload-artifact@v4
       with:
         name: Mod-Roles-Bonelab
-        path: LARUERP/bin/Release/ModRoles.dll
+        path: LARUERP/bin/Release/net472/ModRoles.dll
