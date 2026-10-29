@@ -1,0 +1,27 @@
+name: Compilation du Mod Bonelab
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Récupérer le code
+      uses: actions/checkout@v4
+
+    - name: Configurer MSBuild (Outil de compilation)
+      uses: microsoft/setup-msbuild@v2
+
+    - name: Compiler le projet C#
+      run: |
+        csc /target:library /out:RolesPermanentsFusion.dll /reference:MelonLoader.dll /reference:LabFusion.dll /reference:BoneLib.dll /reference:UnityEngine.CoreModule.dll ModRoles.cs
+
+    - name: Sauvegarder le fichier DLL généré
+      uses: actions/upload-artifact@v4
+      with:
+        name: Mod-Roles-Bonelab
+        path: RolesPermanentsFusion.dll
