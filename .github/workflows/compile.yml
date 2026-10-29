@@ -23,7 +23,7 @@ jobs:
 
     - name: Générer le fichier projet automatique
       run: |
-        echo ^<Project Sdk="Microsoft.NET.Sdk"^>^<PropertyGroup^>^<TargetFramework^>net472^</TargetFramework^>^</PropertyGroup^>^<ItemGroup^>^<Reference Include="MelonLoader" HintPath="MelonLoader.dll" /^>^<Reference Include="LabFusion" HintPath="LabFusion.dll" /^>^<Reference Include="BoneLib" HintPath="BoneLib.dll" /^>^<Reference Include="UnityEngine.CoreModule" HintPath="UnityEngine.CoreModule.dll" /^>^</ItemGroup^>^</Project^> > ModRoles.csproj
+        echo ^<Project Sdk="Microsoft.NET.Sdk"^>^<PropertyGroup^>^<TargetFramework^>net472^</TargetFramework^>^</PropertyGroup^>^<ItemGroup^>^<Reference Include="MelonLoader"^>^<HintPath^>$(MSBuildProjectDirectory)\MelonLoader.dll^</HintPath^>^</Reference^>^<Reference Include="LabFusion"^>^<HintPath^>$(MSBuildProjectDirectory)\LabFusion.dll^</HintPath^>^</Reference^>^<Reference Include="BoneLib"^>^<HintPath^>$(MSBuildProjectDirectory)\BoneLib.dll^</HintPath^>^</Reference^>^<Reference Include="UnityEngine.CoreModule"^>^<HintPath^>$(MSBuildProjectDirectory)\UnityEngine.CoreModule.dll^</HintPath^>^</Reference^>^</ItemGroup^>^</Project^> > ModRoles.csproj
       shell: cmd
 
     - name: Restaurer les dépendances du projet
